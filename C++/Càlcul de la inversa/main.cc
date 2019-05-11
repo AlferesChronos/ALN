@@ -10,7 +10,7 @@ typedef vector<double> Vector;
 typedef vector<Vector> Matriu;
 
 /* Capçaleres de les funcions (estan implementades en altres arxius). */
-int sistema (Matriu& A, Matriu& X, int n, double tol);
+int inversa (Matriu& A, Matriu& X, int n, double tol);
 int lu (Matriu& A, int n, Vector& perm, double tol);
 void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 
@@ -76,8 +76,8 @@ int main (int argc, char *argv[]) {
 	/** Declaració moderna de la matriu de solucions X. */
 	Matriu X(n, Vector(n, 0));
 
-	/** Es resol el sistema, la variable i indica 0 si la matriu A és singular. */
-	i = sistema(A, X, n, tol);
+	/** Es troba la inversa resolent n sistemes lineals, la variable i indica 0 si la matriu A és singular. */
+	i = inversa(A, X, n, tol);
 
 	if (i == 0) {
 		cerr << "Hi ha un error: la matriu A és singular." << endl;
@@ -114,7 +114,7 @@ int main (int argc, char *argv[]) {
 
 	// ESCRIPTURA DELS RESULTATS EN UN FITXER
 
-	/** Declarem fitxerResultats com un objecte de classe ifstream. */
+	/** Declarem fitxerResultats com un objecte de la classe ofstream. */
 	ofstream fitxerResultats; 
 
 	/** Obrim el fitxer per escriure. */
@@ -128,7 +128,13 @@ int main (int argc, char *argv[]) {
 
 	/** Sortida dels resultats. */
 	fitxerResultats << scientific << setprecision(dec_fit);
-	for (i = 0; i < n; i++) fitxerResultats << setw(4) << i << setw(24) << x[i] << endl;
+	for (i = 0; i < n; i++) {
+		fitxerResultats << X[i][0];
+		for (int j = 0; j < n; ++j) {
+			fitxerResultats << ' ' << X[i][j];
+		}
+		fitxerResultats << endl;
+	}
 
 	/** Tanquem el fitxer on hem guardat els resultats. */
 	fitxerResultats.close(); 
