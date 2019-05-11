@@ -2,7 +2,6 @@
 #include <fstream>  // classes ifstream, ofstream, ...
 #include <iomanip>  // funció setw()
 #include <vector>   // classe vector
-#include <string>   //funció to_string
 
 using namespace std;
 
@@ -11,7 +10,7 @@ typedef vector<double> Vector;
 typedef vector<Vector> Matriu;
 
 /* Capçaleres de les funcions (estan implementades en altres arxius). */
-int sistema (Matriu& A, Vector& x, Vector& b, int n, double tol);
+int sistema (Matriu& A, Matriu& X, int n, double tol);
 int lu (Matriu& A, int n, Vector& perm, double tol);
 void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 
@@ -24,7 +23,6 @@ double res_Inf (Vector& r, int n);
 #define tol  10E-2      // Tolerància admesa.
 #define dec_pan 5       // Nombre de decimals quan s'imprimeix per pantalla
 #define dec_fit 15      // Nombre de decimals quan es guarden valors en un fitxer
-#define b "inputb"
 
 int main (int argc, char *argv[]) {
 
@@ -62,60 +60,61 @@ int main (int argc, char *argv[]) {
 	/** Llegim i guardem els components de la matriu A.  */
 	int i, j;
 	for (int k = 0; k < m; ++k) fitxerDades >> i >> j >> A[i][j];
+
+	/** Tanquem el fitxer de dades. */
+	fitxerDades.close();
 	
-    fitxerDades.close();
+	/** Comprovació si l'usuari vol calcular l'error associat a la solució */
+	bool res = false;
+	if (argc > 2 and *argv[2] == '1') {
+		res = true;
+		Matriu A_copia = A;
+	}
+
+	// RESOLUCIÓ DEL SISTEMA AX=I
 	
-	/** Declaració moderna d'un vector. */
-	Vector b(n, 0);
-    //string file = b.append(to_string(i));     //dins d'un for, treu la columna i-èssima de la inversa.
-    //of.open(b,ofstream::out);
-    for (int i = 0; i < n; ++i) {
-        b[i] = 1;   //convertim b en l'i-èssim vector de la base canònica.
-        
-        /** Resolem el sistema Ax=b, on a cada iteració b és l'i-èssim vector de la base canònica. */
-        /** Comprovació si l'usuari vol calcular l'error associat a la solució */
-	    bool res = false;
-	    if (argc > 2 and *argv[2] == '1') {
-		    res = true;
-		    Matriu A_copia = A;
-	    }
+	/** Declaració moderna de la matriu de solucions X. */
+	Matriu X(n, Vector(n, 0));
 
-	    // RESOLUCIÓ DEL SISTEMA
+	/** Es resol el sistema, la variable i indica 0 si la matriu A és singular. */
+	i = sistema(A, X, n, tol);
+
+	if (i == 0) {
+		cerr << "Hi ha un error: la matriu A és singular." << endl;
+		exit(-1);
+	}
+
+	// CÀLCUL DE LA NORMA DEL RESIDU (sub2 i subinfinit)
 	
-	    /** Declaració moderna del vector de solucions x. */
-	    Vector x(n);
-
-	    /** Es resol el sistema, la variable i indica 0 si la matriu A és singular. */
-	    i = sistema(A, x, b, n, tol);
-
-	    if (i == 0) {
-    		cerr << "Hi ha un error: la matriu A és singular." << endl;
-	    	exit(-1);
-	    }
-
-	    // CÀLCUL DE LA NORMA DEL RESIDU (sub2 i subinfinit)
+	/* Creem la matriu identitat de dimensió n per tal de calcular el residu. */
+	Matriu Id(n, Vector(n, 0));
+	for (int i = 0; i < n; ++i) Id[i][i] = 1;
 	
-	    double res2 = 0, resInf = 0;
-	    if (res) residu(A, x, b, n, res2, resInf);
+	/* Calculem les normes 2 i infinit del residu. */
+	double res2 = 0, resInf = 0;
+	if (res) residu(A, X, Id, n, res2, resInf);
 
-	    // ESCRIPTURA DELS RESULTATS PER CONSOLA
+	// ESCRIPTURA DELS RESULTATS PER CONSOLA
 
-	    cout << scientific << setprecision(dec_pan);
-	    cout << "El resultat és: " << endl;
-	    for (int i = 0; i < n; ++i) cout << x[i] << endl;
+	cout << scientific << setprecision(dec_pan);
+	cout << "El resultat és: " << endl;
+	for (int i = 0; i < n; ++i) {
+		cout << x[i][0];
+		for (int j = 0; j < n; ++j) {
+			cout << ' ' << x[i][j];
+		}
+		cout << endl;
+	}
 
-	    if (res) {
-    		cout << "Amb les corresponents normes del residu: " << endl;
-	    	cout << "Norma sub2: " << res2 << endl;
-		    cout << "Norma subinfinit: " << resInf << endl;
-	    }
-        
-        b[i] = 0;   //tornem a deixar b ple de zeros.
-    }
+	if (res) {
+		cout << "Amb les corresponents normes del residu: " << endl;
+		cout << "Norma sub2: " << res2 << endl;
+		cout << "Norma subinfinit: " << resInf << endl;
+	}
 
 	// ESCRIPTURA DELS RESULTATS EN UN FITXER
 
-	/** Declarem fitxerResultats com un objecte de classe ofstream. */
+	/** Declarem fitxerResultats com un objecte de classe ifstream. */
 	ofstream fitxerResultats; 
 
 	/** Obrim el fitxer per escriure. */
