@@ -12,11 +12,10 @@ int lu (Matriu& A, int n, Vector& perm, double tol);
 void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 
 //   A: matriu A
-//   x: vector d'incògnites
-//   b: terme independent del sistema lineal
+//   X: matriu candidata a ser la inversa d'A
 //   n: dimensió de la matriu
 // tol: tolerància admesa sobre els pivots per decidir si la matriu A és singular o no
-int sistema (Matriu& A, Vector& x, Vector& b, int n, double tol) {
+int sistema (Matriu& A, Matriu& X, int n, double tol) {
 	
 	// DESCOMPOSICIÓ LU
 
@@ -31,8 +30,13 @@ int sistema (Matriu& A, Vector& x, Vector& b, int n, double tol) {
 
 	// RESOLUCIÓ DEL SISTEMA
 
-	/** Resolem el sistema. */
-	resol(A, x, b, n, perm);
+	/** Resolem el sistema per cada vector de la bse canònica i posem els resultats a X. */
+	Vector b(n, 0);
+	for (int i = 0; i < n; ++i) {
+		b[i] = 1;
+		resol(A, X[i], b, n, perm);
+		b[i] = 0;
+	}
 
 	return p;
 }
