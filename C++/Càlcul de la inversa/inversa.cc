@@ -1,18 +1,139 @@
-#include <fstream>
-#include <vector>
-#include <string>
-#include <iostream>
+#include <iostream> // variables cout, cin, cerr, ...
+#include <fstream>  // classes ifstream, ofstream, ...
+#include <iomanip>  // funció setw()
+#include <vector>   // classe vector
+#include <string>   //funció to_string
+
 using namespace std;
 
+/* Simplificació del llenguatge i la comprensió del codi. */
+typedef vector<double> Vector;
+typedef vector<Vector> Matriu;
+
+/* Capçaleres de les funcions (estan implementades en altres arxius). */
+int sistema (Matriu& A, Vector& x, Vector& b, int n, double tol);
+int lu (Matriu& A, int n, Vector& perm, double tol);
+void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
+
+void residu (Matriu& A, Vector& x, Vector& b, int n, double res2, double resInf);
+double res_2 (Vector& r, int n);
+double res_Inf (Vector& r, int n);
+
+/* Variables globals. */
+#define FOUT "out.txt"  // Nom del fitxer de sortida.
+#define tol  10E-2      // Tolerància admesa.
+#define dec_pan 5       // Nombre de decimals quan s'imprimeix per pantalla
+#define dec_fit 15      // Nombre de decimals quan es guarden valors en un fitxer
 #define b "inputb"
 
-int inverse(int n,double **a) {
-    ofstream of;
+int main (int argc, char *argv[]) {
+
+	// DETECCIÓ D'ERRORS EN L'ENTRADA
+
+	/** Comprovació que s'ha indicat el nom del fitxer amb les dades. */
+	if (argc < 2) { 
+		cerr << "Hi ha un error: cal indicar el fitxer amb les dades." << endl;
+		cerr << "Exemple d'ús: main fitxer_amb_les_dades" << endl;
+		exit (-1);
+	}
+
+	/** Declarem fitxerDades com un objecte de la classe ifstream. */
+	ifstream fitxerDades; 
+
+	/** Obrim el fitxer per llegir. */
+	fitxerDades.open(argv[1], ifstream::in); 
+
+	/** Comprovació que s'ha pogut obrir el fitxer. */
+	if (fitxerDades.fail()) { 
+		cerr << "Hi ha un error: no s'ha pogut obrir el fitxer de dades." << endl;
+		exit (-1);
+	}
+
+	// LECTURA DE LES DADES
+
+	// n: dimensió de la matriu A (nxn) i de b (nx1).
+	// m: número de components diferents de 0 de la matriu A.
+	int n, m;
+	fitxerDades >> n >> m;
+
+	/** Declaració moderna d'una matriu. */
+	Matriu A(n, Vector(n, 0));
+
+	/** Llegim i guardem els components de la matriu A.  */
+	int i, j;
+	for (int k = 0; k < m; ++k) fitxerDades >> i >> j >> A[i][j];
+	
+    fitxerDades.close();
+	
+	/** Declaració moderna d'un vector. */
+	Vector b(n, 0);
+    //string file = b.append(to_string(i));     //dins d'un for, treu la columna i-èssima de la inversa.
+    //of.open(b,ofstream::out);
     for (int i = 0; i < n; ++i) {
-        string file = b.append(to_string(i));
-        of.open(b,ofstream::out);
-        of << 1 << endl;
-        of << i << ' ' << 1 << endl;
-        of.close();
+        b[i] = 1;   //convertim b en l'i-èssim vector de la base canònica.
+        
+        /** Resolem el sistema Ax=b, on a cada iteració b és l'i-èssim vector de la base canònica. */
+        /** Comprovació si l'usuari vol calcular l'error associat a la solució */
+	    bool res = false;
+	    if (argc > 2 and *argv[2] == '1') {
+		    res = true;
+		    Matriu A_copia = A;
+	    }
+
+	    // RESOLUCIÓ DEL SISTEMA
+	
+	    /** Declaració moderna del vector de solucions x. */
+	    Vector x(n);
+
+	    /** Es resol el sistema, la variable i indica 0 si la matriu A és singular. */
+	    i = sistema(A, x, b, n, tol);
+
+	    if (i == 0) {
+    		cerr << "Hi ha un error: la matriu A és singular." << endl;
+	    	exit(-1);
+	    }
+
+	    // CÀLCUL DE LA NORMA DEL RESIDU (sub2 i subinfinit)
+	
+	    double res2 = 0, resInf = 0;
+	    if (res) residu(A, x, b, n, res2, resInf);
+
+	    // ESCRIPTURA DELS RESULTATS PER CONSOLA
+
+	    cout << scientific << setprecision(dec_pan);
+	    cout << "El resultat és: " << endl;
+	    for (int i = 0; i < n; ++i) cout << x[i] << endl;
+
+	    if (res) {
+    		cout << "Amb les corresponents normes del residu: " << endl;
+	    	cout << "Norma sub2: " << res2 << endl;
+		    cout << "Norma subinfinit: " << resInf << endl;
+	    }
+        
+        b[i] = 0;   //tornem a deixar b ple de zeros.
     }
+
+	// ESCRIPTURA DELS RESULTATS EN UN FITXER
+
+	/** Declarem fitxerResultats com un objecte de classe ofstream. */
+	ofstream fitxerResultats; 
+
+	/** Obrim el fitxer per escriure. */
+	fitxerResultats.open(FOUT,ofstream::out);
+
+	/** Comprovació que s'ha pogut obrir el fitxer. */
+	if (fitxerResultats.fail()) { 
+		cerr << "Hi ha un error: no s'ha pogut obrir el fitxer per escriure." << endl;
+		exit (-1);
+	}
+
+	/** Sortida dels resultats. */
+	fitxerResultats << scientific << setprecision(dec_fit);
+	for (i = 0; i < n; i++) fitxerResultats << setw(4) << i << setw(24) << x[i] << endl;
+
+	/** Tanquem el fitxer on hem guardat els resultats. */
+	fitxerResultats.close(); 
+
+	// NOTA 1: no cal esborrar els vectors ja que el programa ja s'ha acabat i la memoria s'allibera sola
+	// NOTA 2: gràcies al compilador, fer return 0 al final o no fer-lo és el mateix.
 }
