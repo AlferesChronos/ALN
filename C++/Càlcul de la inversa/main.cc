@@ -92,7 +92,7 @@ int main (int argc, char *argv[]) {
 	
 	/* Calculem les normes 2 i infinit del residu. */
 	double res2 = 0, resInf = 0;
-	if (res) residu(A, X, Id, n, res2, resInf);
+	if (res) residu(A_copia, X, Id, n, res2, resInf);
 
 	// ESCRIPTURA DELS RESULTATS PER CONSOLA
 
