@@ -15,7 +15,7 @@ void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 //   X: matriu candidata a ser la inversa d'A
 //   n: dimensió de la matriu
 // tol: tolerància admesa sobre els pivots per decidir si la matriu A és singular o no
-int sistema (Matriu& A, Matriu& X, int n, double tol) {
+int inversa (Matriu& A, Matriu& X, int n, double tol) {
 	
 	// DESCOMPOSICIÓ LU
 
