@@ -16,20 +16,20 @@ A més hi ha una secció opcional que calcula el mòdul del residu amb les norme
 ## Arquitectura
 El conjunt del programa està separat en diferents fitxers. El **main.cc** és el programa principal i el que s'executa en primer lloc. Aquest crida a **sistema.cc** qui separa la tasca de resoldre el sistema Ax = b en dos. Primer crida a **lu.cc** per factoritzar la matriu A, segon crida a **resol.cc** per acabar resolent el sistema quan la matriu ja està factoritzada.
 
-Nota: en tot moment tant vectors com matrius es passen per referéncia per així evitar cópies innecessàries.
+Nota: en tot moment tant vectors com matrius es passen per referència per així evitar còpies innecessàries.
 
 La secció opcional funciona semblant: el **main.cc** fa una crida a **residu.cc** i aquest fa dues crides, primer a **res_2.cc** i després a **res_Inf.cc** que calculen les seves respectives normes.
 
 Finalment també hi ha un arxiu **Makefile** per simplificar el funcionament del programa.
 
 ## Exemple d'ús
-Primer ens situem, a través de la consola, al directori on hi hagi el programa. A continuació, executem escrivint ``` make ```,  aleshores el programa compilarà (aquesta instrucció només cal fer-la un cop). El següent que hem de fer és ``` ./main.exe exemple.txt ``` i s'executarà el programa, mostrarà per pantalla la solució i també la guardarà en un fitxer. Aquí *exemple.txt* pot ser qualsevol tipus de fitxer (amb el nom que calgui) sempre que pogui ser llegit per la llibreria estàndard de c++ *fstream*. Si volem que ens mostri per pantalla els móduls del residu només cal afegir un *1* després del nom del fitxer. És a dir: ``` ./main.exe exemple.txt 1```, i a continuació de la solució apareixerà les normes del residu, que si tot ha funcionat bé serà 0 o molt proper a 0.
+Primer ens situem, a través de la consola, al directori on hi hagi el programa. A continuació, executem escrivint ``` make ```,  aleshores el programa compilarà (aquesta instrucció només cal fer-la un cop). El següent que hem de fer és ``` ./main.exe exemple.txt ``` i s'executarà el programa, mostrarà per pantalla la solució i també la guardarà en un fitxer. Aquí *exemple.txt* pot ser qualsevol tipus de fitxer (amb el nom que calgui) sempre que pugui ser llegit per la llibreria estàndard de c++ *fstream*. Si volem que ens mostri per pantalla els móduls del residu només cal afegir un *1* després del nom del fitxer. És a dir: ``` ./main.exe exemple.txt 1```, i a continuació de la solució apareixeran les normes del residu, que si tot ha funcionat bé serà 0 o molt proper a 0.
 
 ## Altres consideracions
 ### Sobre el format de les dades
 Tal com es veu en *exemple.txt*.
 
-El fitxer de les dades cal que tingui un format concret per ser llegides correctament. El primer que ha d'apareixer és la dimensió de la matriu (quadrada) que ha de coincidir amb la del vector. A continuació, vé la matriu, primer hi ha el nombre de components diferents de 0, després precedit per la seva fila i columna els components diferents de 0. El mateix pel vector de termes independents, primer el nombre de components diferents de 0, després fila, columna i component adequat. Sempre indexat a partir del 0.
+El fitxer de les dades cal que tingui un format concret per ser llegides correctament. El primer que ha d'apareixer és la dimensió de la matriu (quadrada) que ha de coincidir amb la del vector. A continuació, ve la matriu, primer hi ha el nombre de components diferents de 0, després precedit per la seva fila i columna els components diferents de 0. El mateix pel vector de termes independents, primer el nombre de components diferents de 0, després fila, columna i component adequat. Sempre indexat a partir del 0.
 
 ### Sobre el nom del fitxer de sortida
 
