@@ -14,9 +14,9 @@ int inversa (Matriu& A, Matriu& X, int n, double tol);
 int lu (Matriu& A, int n, Vector& perm, double tol);
 void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 
-void residu (Matriu& A, Vector& x, Vector& b, int n, double res2, double resInf);
-double res_2 (Vector& r, int n);
-double res_Inf (Vector& r, int n);
+void residu (Matriu& A, Matriu& X, Matriu& Id, int n, double res2, double resInf);
+double res_2 (Matriu& R, int n);
+double res_Inf (Matriu& R, int n);
 
 /* Variables globals. */
 #define FOUT "out.txt"  // Nom del fitxer de sortida.
