@@ -11,12 +11,8 @@ typedef vector<Vector> Matriu;
 
 /* Capçaleres de les funcions (estan implementades en altres arxius). */
 int inversa (Matriu& A, Matriu& X, int n, double tol);
-int lu (Matriu& A, int n, Vector& perm, double tol);
-void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
 
-void residu (Matriu& A, Matriu& X, Matriu& Id, int n, double res2, double resInf);
-double res_2 (Matriu& R, int n);
-double res_Inf (Matriu& R, int n);
+void residu (Matriu& A, Matriu& X, Matriu& Id, int n, double resInf);
 
 /* Variables globals. */
 #define FOUT "out.txt"  // Nom del fitxer de sortida.
@@ -68,9 +64,10 @@ int main (int argc, char *argv[]) {
 	bool res = false;
 	if (argc > 2 and *argv[2] == '1') {
 		res = true;
-		Matriu A_copia = A;
+		
 	}
-
+    Matriu A_copia = A;
+    
 	// RESOLUCIÓ DEL SISTEMA AX=I
 	
 	/** Declaració moderna de la matriu de solucions X. */
@@ -91,24 +88,23 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < n; ++i) Id[i][i] = 1;
 	
 	/* Calculem les normes 2 i infinit del residu. */
-	double res2 = 0, resInf = 0;
-	if (res) residu(A_copia, X, Id, n, res2, resInf);
+	double resInf = 0;
+	if (res) residu(A_copia, X, Id, n, resInf);
 
 	// ESCRIPTURA DELS RESULTATS PER CONSOLA
 
 	cout << scientific << setprecision(dec_pan);
 	cout << "El resultat és: " << endl;
 	for (int i = 0; i < n; ++i) {
-		cout << x[i][0];
+		cout << X[i][0];
 		for (int j = 0; j < n; ++j) {
-			cout << ' ' << x[i][j];
+			cout << ' ' << X[i][j];
 		}
 		cout << endl;
 	}
 
 	if (res) {
 		cout << "Amb les corresponents normes del residu: " << endl;
-		cout << "Norma sub2: " << res2 << endl;
 		cout << "Norma subinfinit: " << resInf << endl;
 	}
 

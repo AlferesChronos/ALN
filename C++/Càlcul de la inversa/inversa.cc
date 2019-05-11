@@ -5,7 +5,7 @@ typedef vector<double> Vector;
 typedef vector<Vector> Matriu;
 
 /*
-	RESOLUCIÓ D'UN ÚNIC SISTEMA USANT LES FUNCIONS LU I RESOL
+	TROBEM LA INVERSA USANT LES FUNCIONS LU I RESOL
 */
 
 int lu (Matriu& A, int n, Vector& perm, double tol);
@@ -28,7 +28,7 @@ int inversa (Matriu& A, Matriu& X, int n, double tol) {
 
 	if (p == 0) return 0;
 
-	// RESOLUCIÓ DEL SISTEMA
+	// RESOLUCIÓ DE N SISTEMES
 
 	/** Resolem el sistema per cada vector de la bse canònica i posem els resultats a X. */
 	Vector b(n, 0);
