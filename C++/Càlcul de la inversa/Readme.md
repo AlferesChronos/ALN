@@ -11,7 +11,7 @@ L'algoritme està subdividit en 4 parts:
 A més hi ha una secció opcional que calcula la norma del residu amb les normes sub2 i subinfinit.
 
 ## Arquitectura
-El conjunt del programa està separat en diferents fitxers. El **main.cc** és el programa principal i el que s'executa en primer lloc. Aquest crida a **inversa.cc** qui separa la tasca de resoldre el sistema Ax = I en dos. Primer crida a **lu.cc** per factoritzar la matriu A, segon crida a **resol.cc** per acabar resolent els n sistemes quan la matriu ja està factoritzada.
+El conjunt del programa està separat en diferents fitxers. El **main.cc** és el programa principal i el que s'executa en primer lloc. Aquest crida a **inversa.cc** qui separa la tasca de resoldre el sistema AX = I en dos. Primer crida a **lu.cc** per factoritzar la matriu A, segon crida a **resol.cc** per acabar resolent els n sistemes quan la matriu ja està factoritzada.
 
 Nota: en tot moment tant vectors com matrius es passen per referència per així evitar còpies innecessàries.
 
