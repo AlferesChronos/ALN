@@ -30,7 +30,7 @@ int inversa (Matriu& A, Matriu& X, int n, double tol) {
 
 	// RESOLUCIÓ DE N SISTEMES
 
-	/** Resolem el sistema per cada vector de la bse canònica i posem els resultats a X. */
+	/** Resolem el sistema per cada vector de la base canònica i posem els resultats a X. */
 	Vector b(n, 0);
 	for (int i = 0; i < n; ++i) {
 		b[i] = 1;
