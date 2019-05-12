@@ -14,7 +14,7 @@ void residu (Matriu& A, Matriu& X, Matriu& Id, int n, double resInf) {
 
 	// CÀLCUL DE R = AX-Id 
 	
-    Matriu R(n, Vector(n));
+	Matriu R(n, Vector(n));
     
 	Matriu P = product(A, X);
     
