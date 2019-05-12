@@ -1,20 +1,17 @@
-# Pràctica 1 d'Àlgebra Lineal Numèrica
-Descomposició LU ~
-Aleix Torres i Camps ~
-18/04/2019
+# Càlcul de la inversa d'una matriu
 ## Introducció
-El programa compleix el següent objectiu: **Resoldre un sistema lineal determinat Ax = b.** I es caracteritza per fer-ho mitjançant la **descomposició LU** de la matriu A.
+El programa compleix el següent objectiu: **Calcular la inversa d'una matriu A quadrada.** I es caracteritza per fer-ho mitjançant la **descomposició LU** de la matriu A.
 
 L'algoritme està subdividit en 4 parts:
-* Llegir i guardar les dades de la matriu A i el vector de termes independents b.
+* Llegir i guardar les dades de la matriu A.
 * Realitzar la factorizació LU de la matriu.
-* Resoldre els dos sistemes triangulars, per acabar trobant la solució.
+* Resoldre dos sistemes triangulars per cada vector de la base canònica, per acabar trobant la solució.
 * Guardar la solució en un fitxer.
 
-A més hi ha una secció opcional que calcula el mòdul del residu amb les normes sub2 i subinfinit.
+A més hi ha una secció opcional que calcula la norma del residu amb les normes sub2 i subinfinit.
 
 ## Arquitectura
-El conjunt del programa està separat en diferents fitxers. El **main.cc** és el programa principal i el que s'executa en primer lloc. Aquest crida a **sistema.cc** qui separa la tasca de resoldre el sistema Ax = b en dos. Primer crida a **lu.cc** per factoritzar la matriu A, segon crida a **resol.cc** per acabar resolent el sistema quan la matriu ja està factoritzada.
+El conjunt del programa està separat en diferents fitxers. El **main.cc** és el programa principal i el que s'executa en primer lloc. Aquest crida a **inversa.cc** qui separa la tasca de resoldre el sistema Ax = I en dos. Primer crida a **lu.cc** per factoritzar la matriu A, segon crida a **resol.cc** per acabar resolent els n sistemes quan la matriu ja està factoritzada.
 
 Nota: en tot moment tant vectors com matrius es passen per referència per així evitar còpies innecessàries.
 
@@ -29,7 +26,7 @@ Primer ens situem, a través de la consola, al directori on hi hagi el programa.
 ### Sobre el format de les dades
 Tal com es veu en *exemple.txt*.
 
-El fitxer de les dades cal que tingui un format concret per ser llegides correctament. El primer que ha d'apareixer és la dimensió de la matriu (quadrada) que ha de coincidir amb la del vector. A continuació, ve la matriu, primer hi ha el nombre de components diferents de 0, després precedit per la seva fila i columna els components diferents de 0. El mateix pel vector de termes independents, primer el nombre de components diferents de 0, després fila, columna i component adequat. Sempre indexat a partir del 0.
+El fitxer de les dades cal que tingui un format concret per ser llegides correctament. El primer que ha d'apareixer és la dimensió de la matriu (quadrada). A continuació, ve la matriu, primer hi ha el nombre de components diferents de 0, després precedit per la seva fila i columna els components diferents de 0. Sempre indexat a partir del 0.
 
 ### Sobre el nom del fitxer de sortida
 
