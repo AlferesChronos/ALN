@@ -4,7 +4,7 @@ function [ invA ] = Inversa( Q, R )
 [n, m] = size(Q);
 Id = eye(n);
 
-if det_upper(R) == 0
+if DiagDet(R) == 0
     invA = zeros(n);
     return
 end
