@@ -1,4 +1,4 @@
-function [x,res,iter] = overRelaxation(A,b,x0,w,nmax,tol)
+function [x,rho,res,iter] = overRelaxation(A,b,x0,w,nmax,tol)
 
 P=(1/w)*diag(diag(A))+tril(A,-1);
 n=size(P,1);
