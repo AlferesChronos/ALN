@@ -1,4 +1,4 @@
-function [x,res,iter] = jacobi(A,b,x0,nmax,tol)
+function [x,rho,res,iter] = jacobi(A,b,x0,nmax,tol)
 
 tol=1.0e-12;
 D=diag(A);
@@ -12,6 +12,7 @@ B=eye(n)-P\A;
 b=b(:);
 c=P\b;
 x=x0(:);
+rho=max(abs(eig(B)));
 
 for iter=1:nmax
     x=B*x+c;
