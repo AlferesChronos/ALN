@@ -18,10 +18,14 @@ rho=max(abs(eig(B)));
 for iter=1:nmax
     x=B*x+c;
     res=norm(A*x-b);
+    %fprintf('%3d %24.15e %14.15e\n',iter,norm(x,Inf),res); % just for test
     if res < prec
         return
     end
 end
+
+iter = -nmax;
+fprintf('Error: no hi ha hagut convergència en %d iteracions\n',nmax)
 
 end
 
