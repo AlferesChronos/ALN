@@ -1,0 +1,4 @@
+[submodule "LU-Paolo"]
+	path = C++\\Descomposició LU extensible
+	url = https://github.com/plammens/LU.git
+	branch = master
