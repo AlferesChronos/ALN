@@ -5,7 +5,7 @@ using namespace std;
 typedef vector<double> Vector;
 typedef vector<Vector> Matriu;
 
-
+/* Producte de dos matrius de la mateixa dimensió */
 Matriu product (const Matriu& A, const Matriu& B) {
     
     int n = A[0].size();

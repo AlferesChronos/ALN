@@ -5,19 +5,6 @@ all: main.exe
 clean:
 	rm -f *.o *~ *.exe *.exe.stackdump
 
-main.exe: main.o inversa.o lu.o resol.o residu.o  res_2.o product.o res_Inf.o
+main.exe: main.o inversa.o lu.o resol.o residu.o  res_1.o product.o res_Inf.o
 	$(CXX) $^ -o $@
 
-main.o: main.cc
-
-inversa.o: inversa.cc
-
-lu.o: lu.cc
-
-resol.o: resol.cc
-
-residu.o: residu.cc
-
-product.o: product.cc
-
-res_Inf.o: res_Inf.cc

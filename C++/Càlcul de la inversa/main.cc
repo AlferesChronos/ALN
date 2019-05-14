@@ -11,8 +11,10 @@ typedef vector<Vector> Matriu;
 
 /* Capçaleres de les funcions (estan implementades en altres arxius). */
 int inversa (Matriu& A, Matriu& X, int n, double tol);
-
 void residu (Matriu& A, Matriu& X, Matriu& Id, int n, double resInf);
+
+double res_1 (Matriu& R, int n);
+double res_Inf (Matriu& R, int n);
 
 /* Variables globals. */
 #define FOUT "out.txt"  // Nom del fitxer de sortida.
@@ -102,11 +104,20 @@ int main (int argc, char *argv[]) {
 		}
 		cout << endl;
 	}
-
+    
+    /** Comprovació que la matriu resultant és la inversa */
 	if (res) {
 		cout << "Amb les corresponents normes del residu: " << endl;
 		cout << "Norma subinfinit: " << resInf << endl;
 	}
+    
+    // CÀLCUL DEL NÚMERO DE CONDICIO SUB1 i SUBinf
+    
+    cout << "Nombre de condició sub1 de la matriu A: "; 
+    cout << res_1(A_copia, n)*res_1(X, n) << endl;
+    
+    cout << "Nombre de condició subinf de la matriu A: ";
+    cout << res_Inf(A_copia, n)*res_Inf(X, n) << endl;
 
 	// ESCRIPTURA DELS RESULTATS EN UN FITXER
 

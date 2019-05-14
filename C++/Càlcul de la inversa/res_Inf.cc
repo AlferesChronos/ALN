@@ -6,7 +6,7 @@ using namespace std;
 typedef vector<double> Vector;
 typedef vector<Vector> Matriu;
 
-/* Funció que calcula norma subinfinit d'un vector (de dimensió n) r */
+/* Funció que calcula norma subinfinit d'una matriu (de dimensió n) r */
 double res_Inf (Matriu& R, int n) {
     double max = 0;
     
