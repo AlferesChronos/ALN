@@ -1,6 +1,8 @@
 function [Q, R] = modifiedGM(A)
+% MODIFIEDGM    Aquesta funció descomposa la matriu A (de dimensions m*n) en el producte de dues matrius,
+% Q una matriu ortogonal m*n i R una matriu quadrada triangular superior. Utilitza l'algoritme de
+% Gram-Schmidt modificat explicat a classe.
 
-% Descomposició A = QR
 n = size(A, 2);
 Q = A;
 R = zeros(n);
