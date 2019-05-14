@@ -5,6 +5,7 @@ function [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
 %                       x^(k+1)= B_J x^(k) + c_J
 %         with
 %                       B_J = -INV(D)*(U+L), c_J = INV(D)*b.
+%
 % INPUT
 %    A: real n x n matrix. Matrix of the linear system.
 %    b: real vector with n components. r.h.s. of the linear system. 
@@ -21,6 +22,7 @@ function [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
 %       method stops and returns the approximate solution, x^(k), the 
 %       last computed residue, res, and the number of iterations 
 %       performed, iter (see the OUTPUT parameters).
+%
 % OUTPUT
 %    x: real vector with n components. If the method converges, it gives 
 %       the solution up to the given precision; if not, x is just the 
@@ -31,23 +33,30 @@ function [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
 %       convergence is reached in nmax iterations of the method then 
 %       iter = -nmax.
 %
-% 2019 Equip Docent ALN
+% 2019 Equip Docent ALN + MODIFICACIÓ del equip t-studiantil ALN
 %
 
-tol=1.0e-12;
-D=diag(A);
-if min(abs(D))<tol %check for zeros on the diagonal
-    error('error: values on the diagonal with abs. val < %e',tol)
+tol = 1.0e-12;
+D = diag(A);
+if min(abs(D)) < tol %check for zeros on the diagonal
+    error('Error: valors a la diagonal amb valor absolut < %e',tol)
 end
  
 x = x0(:);
 b = b(:);
-res0 = norm(b-A*x);
+
+res0 = norm(b - A*x);
+
+% D és la matriu amb només els elements de A a la diagonal
 D = diag(D);
+
 c = D\b;
-B = D\(D-A);
-rho=max(abs(eig(B)));
-for iter=1:nmax
+
+B = D\(D - A);
+
+rho = max(abs(eig(B)));
+
+for iter = 1:nmax
     x = B*x+c;     
     res = norm(b-A*x)/res0;    
     %fprintf('%3d %24.15e %14.15e\n',iter,norm(x,Inf),res); % just for test
@@ -56,6 +65,6 @@ for iter=1:nmax
     end
 end
 iter = -nmax;
-fprintf('Warnig: no convergence in %d iterations\n',nmax)
+fprintf('Possible error: no ha convergit en %d iteracions\n',nmax)
 
 end %end of FUNCTION jacobi
