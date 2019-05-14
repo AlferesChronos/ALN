@@ -1,6 +1,0 @@
-DEBUG 2019-05-14 14:08:29,474 Loading modules from ()
-DEBUG 2019-05-14 14:08:29,474 Found module class <class 'opengnsys.modules.client.OpenGnSys.OpenGnSysWorker'>
-DEBUG 2019-05-14 14:08:29,474 Modules: [u'opengnsys']
-DEBUG 2019-05-14 14:08:29,475 Activating module opengnsys
-DEBUG 2019-05-14 14:08:29,475 Activate invoked
-DEBUG 2019-05-14 14:08:29,475 Sending request for msg: 229(REQ_LOGIN), aleix.torres.camps,en_US
