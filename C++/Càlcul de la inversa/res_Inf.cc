@@ -8,10 +8,10 @@ typedef vector<Vector> Matriu;
 
 /* Funció que calcula norma subinfinit d'un vector (de dimensió n) r */
 double res_Inf (Matriu& R, int n) {
-	int max = 0;
+    double max = 0;
     
     for (int i = 0; i < n; ++i) {
-        int actual = 0;
+        double actual = 0;
         for (int j = 0; j < n; ++j) {
             actual += abs(R[i][j]);
         }
