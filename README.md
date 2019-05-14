@@ -1,6 +1,15 @@
 # Àlgebra lineal numèrica
 En aquest directori s'hi troben totes les pràctiques i programes útils per la assignatura d'Àlgebra Lineal Numèrica. 
 
+## Instruccions de descàrrega/instal·lació
+
+Per baixar-vos tot el contingut del repo a una carpeta, des de la terminal de comandes feu
+```sh
+git clone --recursive https://github.com/AlferesChronos/ALN.git
+```
+
+A la carpeta on hagueu executat aquesta comanda tindreu una carpeta `ALN` amb el contingut d'aquest repositori. Feu-ne ús responsable! :wink:
+
 ## C++
 Programes en C++. També inclouen Makefile.
 ### Descomposició LU (en vectors o punters)
