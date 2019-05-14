@@ -1,6 +1,6 @@
 function [vap, vep] = Potencia(A, x)
 % POTENCIA  Aquesta funció calcula el valor propi més gran d'A en valor absolut pel mètode de la potència,
-% i també calcula el vector propi corresponent.
+% i també calcula el vector propi corresponent, donat un vector inicial x.
 
 tol = 1e-12;
 prev = ones(size(x));
