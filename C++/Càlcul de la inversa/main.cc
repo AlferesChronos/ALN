@@ -98,7 +98,6 @@ int main (int argc, char *argv[]) {
 	cout << scientific << setprecision(dec_pan);
 	cout << "El resultat és: " << endl;
 	for (int i = 0; i < n; ++i) {
-		cout << X[i][0];
 		for (int j = 0; j < n; ++j) {
 			cout << ' ' << X[i][j];
 		}
