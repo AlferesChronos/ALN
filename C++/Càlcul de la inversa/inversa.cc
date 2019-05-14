@@ -10,6 +10,7 @@ typedef vector<Vector> Matriu;
 
 int lu (Matriu& A, int n, Vector& perm, double tol);
 void resol (Matriu& A, Vector& x, Vector& b, int n, Vector& perm);
+void transposa(Matriu& M);
 
 //   A: matriu A
 //   X: matriu candidata a ser la inversa d'A
@@ -37,6 +38,8 @@ int inversa (Matriu& A, Matriu& X, int n, double tol) {
 		resol(A, X[i], b, n, perm);
 		b[i] = 0;
 	}
-
+	
+	transposa(X);
+	
 	return p;
 }
