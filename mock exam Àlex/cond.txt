@@ -1,0 +1,3 @@
+Nombre de condició:
+-Norma 1: 3.712170478563778e+02
+-Norma infinit: 3.980103246796847e+02
