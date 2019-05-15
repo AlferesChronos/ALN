@@ -31,6 +31,12 @@ Hi ha tres versions:
 ### Càlcul de la inversa
 Un programa que troba la inversa d'una matriu quadrada A, descomposant-la LU.
 
+### funcions
+Un gran conjunt de funcions útils que poden facilitar molt la feina.
+
+### Altres coses
+Simplement hi ha altres coses.
+
 ## Matlab
 Hi ha de tot.
 
