@@ -63,6 +63,15 @@ La funció `condition_inf` rep una **matriu** i retorna el seu nombre de condici
 ### funció `determinant`
 La funció `determinant` rep una **matriu** i retorna el seu determinant
 
+### funció `identity`
+La funció `identity` rep un enter n i retorna una matriu identitat nxn
+
+### funció `print_matriu`
+La funció `print_matriu` rep una matriu i l'escriu al terminal
+
+### funció `print_matlab`
+La funció `print_matlab` rep una matriu i l'escriu al terminal en el format en que matlab llegeix les matrius, és a dir, podeu copiar l'output del terminal i enganxar-lo a Matlab.
+
 Altres funcions més importants:
 
 ### funció `lu`
@@ -100,7 +109,7 @@ cout << endl;
 </table>
 
 ### funció `solve`
-La funció `solve` reb una matriu A i un vector b i retorna un vector x tal que Ax = b. Aquí la matriu A és normal, no està en forma LU.
+La funció `solve` rep una matriu A i un vector b i retorna un vector x tal que Ax = b. Aquí la matriu A és normal, no està en forma LU.
 
 #### exemple
 
@@ -142,7 +151,7 @@ for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
 
 
 ### funció `inverse`
-La funció `inverse` reb una matriu A i retorna la seva inversa.
+La funció `inverse` rep una matriu A i retorna la seva inversa.
 
 #### exemple
 
@@ -176,4 +185,10 @@ cout << determinant(A) << endl;
 </tr>
 </table>
  
+Altres funcions auxiliars:
 
+### funció `pivoting`
+La funció `pivoting` rep una matriu A i un enter index indicant en quin pas de factorització de la LU estem i retorna l'index de la fila que té el pivot.
+
+### funció `Gauss`
+La funció `pivoting` rep una matriu A i un enter row indicant quina es la fila sobre la que s'efectuarà Gauss (totes les files amb fila major que row canviaran de manera que A[>row][row] = 0)
