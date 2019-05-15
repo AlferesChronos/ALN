@@ -50,4 +50,4 @@ Jacobi, Gauss-Siedel, Over-Relaxation
 ### Pràctiques
 Coses fetes a classe, potser hi ha algo útil
 
-**ATENCIÓ:** No assegurem la convergencia de la teva nota
+# ATENCIÓ: No assegurem la convergencia de la teva nota
