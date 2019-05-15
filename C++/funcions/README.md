@@ -1,13 +1,9 @@
-# Polygon Project
+# Funcions per matrius en c++
 
-This project consist of a polygon calculator. You have some commands you can use to define polygons and operate with them, for instance, compute the area of the polygon, compute the intersection of two polygons, draw a set of polygons, etc.
-
-The commands introduced, followed by its function and the specifications of its use are all listed in https://github.com/jordi-petit/ap2-poligons-2019. I have also introduced three complementary commands which are explained in the [Commands](#Commands) section.
-
-In order to use the provided code it is necessary to first installate the library [pngwriter](https://github.com/pngwriter/pngwriter), the way it is explained in https://github.com/jordi-petit/ap2-imatges. If you have already installed the library in antoher path (i.e. not the way explained in jordi's github) then you can go to the [Paths](#Paths) section to see how to change the paths so that everything works.
+Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona.
 
 
-# Structure
+# Instalació
 
 You will download a directory. This directory is the interface of the project and you are supposed to compile the makefile there. If you want to change that go to the [Paths](#Paths) section. This directory contains the makefile, this Readme, and four other directories: Files, Images, Code and Tests.
 
