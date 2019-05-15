@@ -193,4 +193,4 @@ Altres funcions auxiliars:
 La funció `pivoting` rep una matriu A i un enter index indicant en quin pas de factorització de la LU estem i retorna l'index de la fila que té el pivot.
 
 ### funció `Gauss`
-La funció `pivoting` rep una matriu A i un enter row indicant quina es la fila sobre la que s'efectuarà Gauss (totes les files amb fila major que row canviaran de manera que A[>row][row] = 0)
+La funció `Gauss` rep una matriu A i un enter row indicant quina es la fila sobre la que s'efectuarà Gauss (totes les files amb fila major que row canviaran de manera que A[>row][row] = 0)
