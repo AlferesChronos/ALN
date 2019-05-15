@@ -1,28 +1,71 @@
 # Funcions per matrius en c++
 
-Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona.
+Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona. Important, tot està implementat amb vectors i vectors de vectors, així que podeu fer copies de matrius tranquilament, per simplicitat als vectors de vectors s'anomenen matrius i els vectors de **double** vec. Si voleu utilitzar vectors d'enters utilitzeu simplements vector <int>. La tolerancia que s'utilitza per defecte és 1e-12, si la voleu canviar canvieu la constat epsilon en l'arxiu funcions.h
 
 
 # Instalació
 
-You will download a directory. This directory is the interface of the project and you are supposed to compile the makefile there. If you want to change that go to the [Paths](#Paths) section. This directory contains the makefile, this Readme, and four other directories: Files, Images, Code and Tests.
+Per començar cal descarregar aquesta carpeta (funcions) amb els seus fitxers. A continuació podeu executar el programa principal simplement fent:
 
-* **Files** is the directory where the files are created when doing save and where the files that are going to be read must be. That is, if you want to use the load command to read a file, that file must be there.
+    ```bash
+    g++ -std=c++11 main.cpp funcions.cpp
+    ./a.out (nom de l'arxiu amb les dades)
+    ```
 
-* **Images** is the directory where all the images you create with the draw or fulldraw commands are going to be stored.
+Però també es pot utilitzar la commanda make:
 
-* **Tests** is the directory where all the test cases are stored: for more information go to the [Tests](#Test) section.
+    ```bash
+    make
+    ./main.exe (nom de l'arxiu amb les dades)
+    ```
+    
+en aquest ultim cas podeu fer:
 
-* **Code** contains all the code of the project. It has the main.cc and three directories, Point, Polygon and commads (two classes and a header). Each one of those directories contains the specification .hh document and their implementation (which in some cases is distributed in more than one .cc file).
+    ```bash
+    make clean
+    ```
+    
+per borrar els arxius .o si ja no voleu seguir utilitzant el programa.
 
-This structure has been thought to make things easier for the user and have everything in place. If for any reason you want to change the paths of the project (you want the pictures to go somwhere else, read files from somwhere else, compile the makefile from other directories, etc) go to [Paths](#Paths) section, where it is explained how to implement those changes.
-   
-# Commands
+# Funcions
 
-Aside from all the commands that our calculator has by default, that is, the ones explained in the description of this assignment, I implemented three more commands:
+Aquí s'explicarà breument les funcions que han estat implementades i que fan:
 
-### The `fulldraw` command
-The `fulldraw` command works exactly as the `draw` command, the only difference is that the polygons that are drawn are completely filled. To use it you must put the name of the command, the name of the file where you want to store the images and a set of polygons that are to be drawn.
+### funció `lu`
+La funció `lu` reb una matriu A i un vector d'enters (vector de permutació) i retorna un número 0 si el determinant d'A és menor a epsilon, 1 si s'ha fet un nombre parell de permutacions i -1 altrament. A més, la matriu A acaba sent la matriu A expressada en forma LU i el vector d'enters que s'havia passat originalment acaba sent el vector de permutació. Atenció els dos estan passats per referència:
+
+#### exemple
+
+Donada la matriu del mock exam:
+
+<table>
+<tr>
+<td>
+
+```
+n = A.size();
+
+vector <int> perm (n, 0);
+matriu LU = A;
+lu(LU, perm);
+
+for (int i = 0; i < n; ++i) cout << perm[i] << ", ";
+cout << endl;
+```
+
+</td>
+<td>
+
+```
+0, 1, 7, 3, 13, 2, 9, 8, 6, 14, 10, 12, 5, 11, 4,
+
+```
+
+</td>
+</tr>
+</table>
+
+
 
 ### The `regular` command
 The `regular` command reads a polygon and prints `yes` if the polygon is regular and `no` otherwise.
