@@ -6,10 +6,7 @@ Aquest projecte consisteix en una capçalera amb diverses funcions implementades
 # Instalació
 
 Per començar cal descarregar aquesta carpeta (funcions) amb els seus fitxers. A continuació podeu executar el programa principal simplement fent:
-    ```bash
-    git clone https://github.com/pngwriter/pngwriter.git
-    ```
-
+    
     ```bash
     g++ -std=c++11 main.cpp funcions.cpp
     ./a.out (nom de l'arxiu amb les dades)
