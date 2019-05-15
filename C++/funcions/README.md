@@ -31,8 +31,42 @@ per borrar els arxius .o si ja no voleu seguir utilitzant el programa.
 
 Aquí s'explicarà breument les funcions que han estat implementades i que fan:
 
+Primer expliquem operacions de matrius:
+
+### funció `multiply`
+La funció `multiply` rep dues matrius A i B i retorna una matriu A·B
+
+### funció `add` i `subtract`
+La funció `add` rep dues matrius A i B i retorna una matriu A+B i la funció `subtract` retorna en canvi A-B
+
+### funció `transpose`
+La funció `transpose` rep una matriu i retorna la seva transposta
+
+### funció `transform`
+La funció `transform` rep un vector i retorna una matriu, el vector com a vector columna (una matriu nx1). Aquesta funció és important de cara a muñtiplicar matrius per vectors
+
+### funció `norm_two`
+La funció `norm_two` rep un **vector** i retorna la seva norma 2
+
+### funció `norm_one`
+La funció `norm_one` rep una **matriu** i retorna la seva norma 1
+
+### funció `norm_inf`
+La funció `norm_inf` rep una **matriu** i retorna la seva norma infinit
+
+### funció `condition_one`
+La funció `condition_one` rep una **matriu** i retorna el seu nombre de condició sub 1
+
+### funció `condition_inf`
+La funció `condition_inf` rep una **matriu** i retorna el seu nombre de condició sub infinit
+
+### funció `determinant`
+La funció `determinant` rep una **matriu** i retorna el seu determinant
+
+Altres funcions més importants:
+
 ### funció `lu`
-La funció `lu` reb una matriu A i un vector d'enters (vector de permutació) i retorna un número 0 si el determinant d'A és menor a epsilon, 1 si s'ha fet un nombre parell de permutacions i -1 altrament. A més, la matriu A acaba sent la matriu A expressada en forma LU i el vector d'enters que s'havia passat originalment acaba sent el vector de permutació. Atenció els dos estan passats per referència:
+La funció `lu` rep una matriu A i un vector d'enters (vector de permutació) i retorna un número 0 si el determinant d'A és menor a epsilon, 1 si s'ha fet un nombre parell de permutacions i -1 altrament. A més, la matriu A acaba sent la matriu A expressada en forma LU i el vector d'enters que s'havia passat originalment acaba sent el vector de permutació. Atenció els dos estan passats per referència:
 
 #### exemple
 
@@ -105,7 +139,52 @@ for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
 </td>
 </tr>
 </table>
+
+
+### funció `inverse`
+La funció `inverse` reb una matriu A i retorna la seva inversa.
+
+#### exemple
+
+Resolució del sistema M00.DAT
+
+<table>
+<tr>
+<td>
+
+```
+vec x = solve(A, b);
+for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
+```
+
+</td>
+<td>
+
+```
+0 -1.13591992015e+01
+1 -8.15119193061e-01
+2 -5.97039709365e-01
+3 4.72477811642e+00
+4 5.15388873894e+00
+5 3.73105422667e+00
+6 -8.57946616057e+00
+7 8.47914822817e-01
+8 -3.80721757848e+00
+9 -3.44023384034e+00
+10 -5.29462802072e+00
+11 -1.74280934298e+00
+12 2.00662194467e+00
+13 -5.39824206640e+00
+
+```
+
+</td>
+</tr>
+</table>
  
+
+
+
 # Possible errors
 
 The list of the errors that can appear and their meaning follows:
