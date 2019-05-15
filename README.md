@@ -43,6 +43,8 @@ Hi ha de tot.
 > *Nota:* algunes funcions depenen d'altres que estan definides a un arxiu diferent. Per tant, utilitzeu sempre tots els arxius de la carpeta en qüestió.
 
 ### Ajustament per mínims quadrats
+Arxiu de la segona pràctica.
+
 ### Mètodes Iteratius
 Jacobi, Gauss-Siedel, Over-Relaxation
 ### Pràctiques
