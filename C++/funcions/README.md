@@ -45,7 +45,7 @@ La funció `add` rep dues matrius A i B i retorna una matriu A+B i la funció `s
 La funció `transpose` rep una matriu i retorna la seva transposta
 
 ### funció `transform`
-La funció `transform` rep un vector i retorna una matriu, el vector com a vector columna (una matriu nx1). Aquesta funció és important de cara a muñtiplicar matrius per vectors
+La funció `transform` rep un vector i retorna una matriu, el vector com a vector columna (una matriu nx1). Aquesta funció és important de cara a multiplicar matrius per vectors
 
 ### funció `norm_two`
 La funció `norm_two` rep un **vector** i retorna la seva norma 2
