@@ -65,14 +65,46 @@ cout << endl;
 </tr>
 </table>
 
+### funció `solve`
+La funció `solve` reb una matriu A i un vector b i retorna un vector x tal que Ax = b. Aquí la matriu A és normal, no està en forma LU.
 
+#### exemple
 
-### The `regular` command
-The `regular` command reads a polygon and prints `yes` if the polygon is regular and `no` otherwise.
+Resolució del sistema M00.DAT
 
-### The `in` command
-The `in` command reads a polygon and a point and prints `yes` if the point is inside the polygon and `no` otherwise.
+<table>
+<tr>
+<td>
 
+```
+vec x = solve(A, b);
+for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
+```
+
+</td>
+<td>
+
+```
+0 -1.13591992015e+01
+1 -8.15119193061e-01
+2 -5.97039709365e-01
+3 4.72477811642e+00
+4 5.15388873894e+00
+5 3.73105422667e+00
+6 -8.57946616057e+00
+7 8.47914822817e-01
+8 -3.80721757848e+00
+9 -3.44023384034e+00
+10 -5.29462802072e+00
+11 -1.74280934298e+00
+12 2.00662194467e+00
+13 -5.39824206640e+00
+
+```
+
+</td>
+</tr>
+</table>
  
 # Possible errors
 
