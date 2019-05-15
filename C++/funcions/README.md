@@ -9,23 +9,23 @@ Si voleu afegir una funció heu d'afegir l'especificació en funcions.h (és a d
 
 Per començar cal descarregar aquesta carpeta (funcions) amb els seus fitxers. A continuació podeu executar el programa principal simplement fent:
     
-    ```
+   
     g++ -std=c++11 main.cpp funcions.cpp
     ./a.out (nom de l'arxiu amb les dades)
-    ```
+   
 
 Però també es pot utilitzar la commanda make:
 
-    ```
+   
     make
     ./main.exe (nom de l'arxiu amb les dades)
-    ```
+    
     
 en aquest ultim cas podeu fer:
 
-    ```
+   
     make clean
-    ```
+    
     
 per borrar els arxius .o si ja no voleu seguir utilitzant el programa.
 
