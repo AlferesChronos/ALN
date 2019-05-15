@@ -1,6 +1,8 @@
 # Funcions per matrius en c++
 
-Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona. Important, tot està implementat amb vectors i vectors de vectors, així que podeu fer copies de matrius tranquilament, per simplicitat als vectors de vectors s'anomenen matrius i els vectors de **double** vec. Si voleu utilitzar vectors d'enters utilitzeu simplements vector <int>. La tolerancia que s'utilitza per defecte és 1e-12, si la voleu canviar canvieu la constat epsilon en l'arxiu funcions.h
+Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona. Important, tot està implementat amb vectors i vectors de vectors, així que podeu fer copies de matrius tranquilament, per simplicitat als vectors de vectors s'anomenen matrius i els vectors de **double** vec. Si voleu utilitzar vectors d'enters utilitzeu simplements vector <int>. La tolerancia que s'utilitza per defecte és 1e-12, si la voleu canviar canvieu la constat epsilon en l'arxiu funcions.h.
+    
+Si voleu afegir una funció heu d'afegir l'especificació en funcions.h (és a dir, el nom de la funciño i parametres que rep) i escriure l'implementació en el fitxer funcions.cpp
 
 
 # Instalació
