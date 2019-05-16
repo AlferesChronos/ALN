@@ -143,8 +143,8 @@ matriu multiply(matriu A, matriu B){
 	matriu ans(n, vec(q, 0));
 
 	for (int i = 0; i < n; ++i){
-        for (int j = 0; j < m; ++j){
-            for (int k = 0; k < q; ++k) ans[i][j] += A[i][k] * B[k][j];
+        for (int j = 0; j < q; ++j){
+            for (int k = 0; k < m; ++k) ans[i][j] += A[i][k] * B[k][j];
         }
     }
 
