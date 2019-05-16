@@ -62,7 +62,7 @@ La funció `norm_inf` rep una **matriu** i retorna la seva norma infinit
 La funció `norm_one_vector` rep un **vector** i retorna la seva norma 1
 
 ### funció `vector_sum`
-La funció `vector_sum` rep dos **vector** i retorna la seva suma
+La funció `vector_sum` rep dos **vectors** i retorna la seva suma
 
 ### funció `trace`
 La funció `trace` rep una **matriu** i retorna la seva traça
