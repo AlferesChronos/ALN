@@ -112,6 +112,9 @@ cout << endl;
 </tr>
 </table>
 
+Nota: fer matriu LU és exactament el mateix que fer vector \<vector \<double\> \> LU
+Nota2: Aquí copiem la matriu A i utilitzem LU per fer lu perquè si volem calcular després el determinant, la inversa d'A etc, ho podem fer directament, ja que la matriu que passem a LU canvia.
+
 ### funció `solve`
 La funció `solve` rep una matriu A i un vector b i retorna un vector x tal que Ax = b. Aquí la matriu A és normal, no està en forma LU.
 
@@ -160,6 +163,7 @@ cout << norm_two(residu) << endl;
 </tr>
 </table>
 
+Nota: fer vec x és exactament el mateix que fer vector \<double\> x
 
 ### funció `inverse`
 La funció `inverse` rep una matriu A i retorna la seva inversa.
