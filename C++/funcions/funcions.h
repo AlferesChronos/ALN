@@ -64,4 +64,6 @@ double norm_one_vector (const vec& b);
 // sums two vec (of the same dimension)
 vec vector_sum (const vec& u, const vec& v);
 
+double trace (const matriu& A);
+
 #endif

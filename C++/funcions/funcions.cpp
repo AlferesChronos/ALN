@@ -319,3 +319,10 @@ vec vector_sum (const vec& u, const vec& v) {
 	
 	return res;
 }
+
+double trace (const matriu& A) {
+	int n = A.size();
+	double t = 0;
+	for (int i = 0; i < n; ++i) t += A[i][i];
+	return t;
+}
