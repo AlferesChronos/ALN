@@ -59,4 +59,6 @@ void print_matlab(matriu A);
 
 matriu identity(int n);
 
+double norm_one_vector (vec b);
+
 #endif
