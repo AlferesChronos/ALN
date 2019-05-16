@@ -117,7 +117,7 @@ La funció `solve` rep una matriu A i un vector b i retorna un vector x tal que 
 
 #### exemple
 
-Resolució del sistema M00.DAT
+Resolució del sistema M00.DAT i càlcul de ||Ax-b||
 
 <table>
 <tr>
@@ -126,6 +126,12 @@ Resolució del sistema M00.DAT
 ```
 vec x = solve(A, b);
 for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
+
+// res = Ax-b com a matriu i residu = Ax-b com a vector
+matriu res = subtract(multiply(A, transform(x)), transform(b));
+vec residu = transpose(res)[0];
+
+cout << norm_two(residu) << endl;
 ```
 
 </td>
@@ -147,6 +153,7 @@ for (int i = 0; i < x.size(); ++i) cout << i << " " << x[i] << endl;
 12 2.00662194467e+00
 13 -5.39824206640e+00
 
+3.50246771780e-14
 ```
 
 </td>
