@@ -1,13 +1,13 @@
 # Funcions per matrius en c++
 
-Hi havia un petit error en la funció multiply, ha estat corregit, a més, s'ha introduit una nova funció: norm_one_vector, per tant, guardeu la versió actual.
+Hi havia un petit error en la funció multiply, ha estat corregit, a més, s'ha introduit tres noves funció: norm_one_vector, vector_sum i trace, per tant, guardeu la versió actual.
 
-Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona. Important: tot està implementat amb vectors i vectors de vectors, així que podeu fer copies de matrius tranquilament, per simplicitat els vectors de vectors s'anomenen matrius i els vectors de **double** vec. Si voleu utilitzar vectors d'enters utilitzeu simplements vector \<int\>. La tolerancia que s'utilitza per defecte és 1e-12, si la voleu canviar canvieu la constat epsilon en l'arxiu funcions.h.
+Aquest projecte consisteix en una capçalera amb diverses funcions implementades que actuen sobre matrius. S'explicarà breument com utilitzar-lo i com funciona. Important: tot està implementat amb vectors i vectors de vectors, així que podeu fer copies de matrius tranquilament, per simplicitat els vectors de vectors s'anomenen matrius i els vectors de **double** vec. Si voleu utilitzar vectors d'enters utilitzeu simplements vector \<int\>. La tolerancia que s'utilitza per defecte és 1e-12, si la voleu canviar canvieu la constant epsilon en l'arxiu funcions.h.
     
-Si voleu afegir una funció heu d'afegir l'especificació en funcions.h (és a dir, el nom de la funció i paràmetres que rep) i escriure l'implementació en el fitxer funcions.cpp
+Si voleu afegir una funció heu d'afegir l'especificació a funcions.h (és a dir, el nom de la funció i paràmetres que rep) i escriure l'implementació en el fitxer funcions.cpp
 
 
-# Instalació
+# Instal·lació
 
 Per començar cal descarregar aquesta carpeta (funcions) amb els seus fitxers. A continuació podeu executar el programa principal simplement fent:
     
@@ -60,6 +60,12 @@ La funció `norm_inf` rep una **matriu** i retorna la seva norma infinit
 
 ### funció `norm_one_vector`
 La funció `norm_one_vector` rep un **vector** i retorna la seva norma 1
+
+### funció `vector_sum`
+La funció `vector_sum` rep dos **vector** i retorna la seva suma
+
+### funció `trace`
+La funció `trace` rep una **matriu** i retorna la seva traça
 
 ### funció `condition_one`
 La funció `condition_one` rep una **matriu** i retorna el seu nombre de condició sub 1
