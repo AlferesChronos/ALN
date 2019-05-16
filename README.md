@@ -14,6 +14,7 @@ Si hi ha canvis, per actualitzar els continguts de la còpia (un cop ja heu clon
 
 ```sh
 git pull --recurse-submodules
+git submodule update --remote
 ```
 
 
@@ -31,15 +32,23 @@ Hi ha tres versions:
 ### Càlcul de la inversa
 Un programa que troba la inversa d'una matriu quadrada A, descomposant-la LU.
 
+### funcions
+Un gran conjunt de funcions útils que poden facilitar molt la feina.
+
+### Altres coses
+Simplement hi ha altres coses.
+
 ## Matlab
 Hi ha de tot.
 
 > *Nota:* algunes funcions depenen d'altres que estan definides a un arxiu diferent. Per tant, utilitzeu sempre tots els arxius de la carpeta en qüestió.
 
 ### Ajustament per mínims quadrats
+Arxiu de la segona pràctica.
+
 ### Mètodes Iteratius
 Jacobi, Gauss-Siedel, Over-Relaxation
 ### Pràctiques
 Coses fetes a classe, potser hi ha algo útil
 
-**ATENCIÓ:** No assegurem la convergencia de la teva nota
+# ATENCIÓ: No assegurem la convergència de la teva nota
