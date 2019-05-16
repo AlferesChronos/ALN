@@ -64,13 +64,15 @@ int lu (matriu& A, vector <int>& perm){
 }
 
 //given A and b computes x such that Ax = b;
-vec solve(matriu A, vec b){
+vec solve(const matriu& A, const vec& b){
 	int n = A.size();
 	
 	vec x(n, 0);
 	vector <int> perm (n, 0);
 
-	lu(A, perm);
+	matriu LU = A;
+
+	lu(LU, perm);
 
 	// B = Pb
 	vec B = vec(n);
@@ -81,17 +83,17 @@ vec solve(matriu A, vec b){
 		x[i] = B[i];
 
 		for (int j = 0; j < i; ++j){
-			x[i] -= x[j]*A[i][j];
+			x[i] -= x[j]*LU[i][j];
 		}
 	}
 
 	// Ux = y
 	for (int i = n-1; i >= 0; --i){
 		for (int j = n-1; j > i; --j){
-			x[i] -= x[j]*A[i][j];
+			x[i] -= x[j]*LU[i][j];
 		}
 
-		x[i] /= A[i][i];
+		x[i] /= LU[i][i];
 	}
 
 	return x;
@@ -99,7 +101,7 @@ vec solve(matriu A, vec b){
 
 
 
-matriu inverse (matriu A){
+matriu inverse (const matriu& A){
 	int n = A.size();
 	vector <int> perm(n, 0);
 	matriu LU = A;
@@ -122,17 +124,19 @@ matriu inverse (matriu A){
     return transpose(inv);
 }
 
-double determinant(matriu A){
+double determinant(const matriu& A){
 	int n = A.size();
 	vector <int> perm(n, 0);
 	
-	double answer = lu(A, perm);
-	for (int i = 0; i < n; ++i) answer *= A[i][i];
+	matriu LU = A;
+
+	double answer = lu(LU, perm);
+	for (int i = 0; i < n; ++i) answer *= LU[i][i];
 
 	return answer;
 }
 
-matriu multiply(matriu A, matriu B){
+matriu multiply(const matriu& A, const matriu& B){
 	int n = A.size(), m = A[0].size(), p = B.size(), q = B[0].size();
 
 	if (m != p) {
@@ -152,7 +156,7 @@ matriu multiply(matriu A, matriu B){
 }
 
 // it expresses a vector as a matriu (column vector)
-matriu transform(vec b){
+matriu transform(const vec& b){
 	int n = b.size();
 
 	matriu ans(n, vec(1, 0));
@@ -162,7 +166,7 @@ matriu transform(vec b){
 }
 
 
-matriu add (matriu A, matriu B){ //Given two matrices computes their sum
+matriu add (const matriu& A, const matriu& B){ //Given two matrices computes their sum
 	int n = A.size(), m = A[0].size(), p = B.size(), q = B[0].size();
 
 	if (n != p or m != q) {
@@ -172,14 +176,14 @@ matriu add (matriu A, matriu B){ //Given two matrices computes their sum
 
     matriu ans = A;
 
-    for (int i = 0; i < B.size(); ++i){
-        for (int j = 0; j < B[0].size(); ++j) ans[i][j] += B[i][j];
+    for (int i = 0; i < p; ++i){
+        for (int j = 0; j < q; ++j) ans[i][j] += B[i][j];
     }
 
     return ans;
 }
 
-matriu subtract (matriu A, matriu B){ //Given two matrices computes their difference
+matriu subtract (const matriu& A, const matriu& B){ //Given two matrices computes their difference
     int n = A.size(), m = A[0].size(), p = B.size(), q = B[0].size();
 
 	if (n != p or m != q) {
@@ -189,14 +193,14 @@ matriu subtract (matriu A, matriu B){ //Given two matrices computes their differ
 
     matriu ans = A;
 
-    for (int i = 0; i < B.size(); ++i){
-        for (int j = 0; j < B[0].size(); ++j) ans[i][j] -= B[i][j];
+    for (int i = 0; i < p; ++i){
+        for (int j = 0; j < q; ++j) ans[i][j] -= B[i][j];
     }
 
     return ans;
 }
 
-matriu transpose(matriu A){
+matriu transpose(const matriu& A){
 	int n = A.size(), m = A[0].size();
 
 	matriu ans(m, vec(n));
@@ -210,7 +214,7 @@ matriu transpose(matriu A){
 	return ans;
 }
 
-double norm_one(matriu A){
+double norm_one(const matriu& A){
 	int n = A.size(), m = A[0].size();
 
 	double ans = 0;
@@ -226,7 +230,7 @@ double norm_one(matriu A){
 }
 
 
-double norm_inf(matriu A){
+double norm_inf(const matriu& A){
 	int n = A.size(), m = A[0].size();
 
 	double ans = 0;
@@ -241,23 +245,24 @@ double norm_inf(matriu A){
 	return ans;
 }
 
-double norm_two(vec b){
+double norm_two(const vec& b){
 	double ans = 0;
+	int n = b.size();
 
-	for (int i = 0; i < b.size(); ++i) ans += b[i]*b[i];
+	for (int i = 0; i < n; ++i) ans += b[i]*b[i];
 	return sqrt(ans);
 }
 
-double condition_one(matriu A){
+double condition_one(const matriu& A){
 	return norm_one(A) * norm_one(inverse(A));
 }
 
 
-double condition_inf(matriu A){
+double condition_inf(const matriu& A){
 	return norm_inf(A) * norm_inf(inverse(A));
 }
 
-void print_matriu(matriu A){
+void print_matriu(const matriu& A){
 	int n = A.size(), m = A[0].size();
 
 	for (int i = 0; i < n; ++i) {
@@ -271,7 +276,7 @@ void print_matriu(matriu A){
 	cout << endl;
 }
 
-void print_matlab(matriu A){
+void print_matlab(const matriu& A){
 	int n = A.size(), m = A[0].size();
 
 	cout << "A = [";
@@ -294,8 +299,9 @@ matriu identity(int n){
 	return ans;
 }
 
-double norm_one_vector (vec b){
+double norm_one_vector (const vec& b){
 	double ans = 0;
-	for (int i = 0; i < b.size(); ++i) ans += abs(b[i]);
+	int n = b.size();
+	for (int i = 0; i < n; ++i) ans += abs(b[i]);
 	return ans;
 }
