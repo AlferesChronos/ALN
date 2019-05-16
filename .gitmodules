@@ -1,4 +1,3 @@
 [submodule "LU-Paolo"]
 	path = C++/LU-extensible
 	url = https://github.com/plammens/LU.git
-	branch = master
