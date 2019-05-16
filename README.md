@@ -14,7 +14,7 @@ Si hi ha canvis, per actualitzar els continguts de la còpia (un cop ja heu clon
 
 ```sh
 git pull --recurse-submodules
-git submodule update
+git submodule update --remote
 ```
 
 
