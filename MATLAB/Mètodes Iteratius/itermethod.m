@@ -9,22 +9,23 @@ function [x, res, iter] = itermethod(A,b,G, c, x0, nmax, tol)
 %
 
     x = x0(:);
-    res0 = norm(b-A*x);
+    normType = 2;
+    res0 = norm(b-A*x, normType);
     
-    for iter = 1:50
+    for iter = 1:min(50, nmax)
         x = G*x + c;
-        res = norm(A*x - b, inf)/res0;
+        res = norm(A*x - b, normType)/res0;
         if res < tol; return; end
     end
     
     for iter = 50:nmax
         x = G*x + c;
         if mod(iter, 10) == 0
-            res = norm(A*x - b, inf)/res0;
+            res = norm(A*x - b, normType)/res0;
             if res < tol; return; end
         end
     end
-    
+    iter = nmax;
     warning('no convergence in %d iterations\n', nmax)
     
 end
