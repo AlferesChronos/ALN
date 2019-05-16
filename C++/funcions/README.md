@@ -58,6 +58,9 @@ La funció `norm_one` rep una **matriu** i retorna la seva norma 1
 ### funció `norm_inf`
 La funció `norm_inf` rep una **matriu** i retorna la seva norma infinit
 
+### funció `norm_one_vector`
+La funció `norm_one_vector` rep un **vector** i retorna la seva norma 1
+
 ### funció `condition_one`
 La funció `condition_one` rep una **matriu** i retorna el seu nombre de condició sub 1
 
