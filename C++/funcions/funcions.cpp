@@ -305,3 +305,17 @@ double norm_one_vector (const vec& b){
 	for (int i = 0; i < n; ++i) ans += abs(b[i]);
 	return ans;
 }
+
+vec vector_sum (const vec& u, const vec& v) {
+	int n = u.size(), m = v.size();
+	
+	if (n != m) {
+		cout << "Les dimensions no quadren!! Les dimensions són " << n << " i " << m << '.' << endl;
+		return u;
+	}
+		
+	vec res(n, 0);
+	for (int i = 0; i < n; ++i) res[i] = u[i] + v[i];
+	
+	return res;
+}
