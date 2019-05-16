@@ -1,6 +1,5 @@
-function [x,rho,res,iter] = overRelaxation(A,b,x0,w,nmax,prec)
-% FUNCTION [x,rho,res,iter] = overRelaxation(A,b,x0,w,nmax,prec)
-% JACOBI. Resolution of a linear system Ax = b using over-relaxation 
+function [x,res,iter] = overRelaxation(A,b,x0,w,nmax,prec)
+% OVERRELAXATION Resolution of a linear system Ax = b using over-relaxation 
 %         iterative metod
 %                       x^(k+1)= B_OR x^(k) + c_OR
 %         with
@@ -30,36 +29,25 @@ function [x,rho,res,iter] = overRelaxation(A,b,x0,w,nmax,prec)
 %  rho: spectral radius of the corresponding iteration matrix.
 %  res: real value. Last computed normalised residual (see the INPUT).
 % iter: integer value. Number of iterations actually performed. If no 
-%       convergence is reached in nmax iterates, then iter = -nmax. 
+%       convergence is reached in nmax iterates, then iter = nmax. 
 %
 % 2019 Equip Docent ALN
 %
 
-tol=1.0e-12;
-D=diag(A);
-if min(abs(D))<tol %check for zeros on the diagonal
-    error('error: values on the diagonal with abs. val < %e',tol)
-end
-
-x = x0(:);
+checkDiag(A);
+x0 = x0(:);
 b = b(:);
-res0 = norm(b-A*x);
-D = diag(D);
-L = D+w*tril(A,-1);
-U = (1-w)*D-w*triu(A,1);
-B = L\U;
-c=L\b;
-c=w*c;
-rho=max(abs(eig(B)));
-for iter=1:nmax
-    x = B*x+c;
-    res = norm(b-A*x)/res0;
-    %fprintf('%3d %24.15e %14.15e\n',iter,norm(x,Inf),res); % just for test
-    if (res < prec) 
-        return
-    end
-end
-iter = -nmax;
-fprintf('Warnig: no convergence in %d iterations\n',nmax)
 
-end %end of FUNCTON overRelaxation
+[B, c] = getSOR(A, b, w);
+[x, res, iter] = itermethod(A, b, B, c, x0, nmax, prec);
+
+end
+
+
+function [B, c] = getSOR(A, b, w)
+    D = diag(diag(A)); L = tril(A, -1); U = triu(A, 1);
+    T = D + w*L;
+    S = (1-w)*D - w*U;
+    B = T\S;
+    c = w*(T\b);
+end

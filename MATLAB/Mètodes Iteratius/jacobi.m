@@ -1,6 +1,6 @@
-function [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
+function [x,res,iter] = jacobi(A,b,x0,nmax,prec)
 % FUNCTION [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
-% JACOBI. Resolution of a linear system Ax = b using Jacobi iterative.
+% JACOBI Resolution of a linear system Ax = b using Jacobi iterative.
 %         method,
 %                       x^(k+1)= B_J x^(k) + c_J
 %         with
@@ -36,35 +36,17 @@ function [x,rho,res,iter] = jacobi(A,b,x0,nmax,prec)
 % 2019 Equip Docent ALN + MODIFICACIÓ del equip t-studiantil ALN
 %
 
-tol = 1.0e-12;
-D = diag(A);
-if min(abs(D)) < tol %check for zeros on the diagonal
-    error('Error: valors a la diagonal amb valor absolut < %e',tol)
-end
- 
-x = x0(:);
+checkDiag(A)
+x0 = x0(:);
 b = b(:);
 
-res0 = norm(b - A*x);
-
-% D és la matriu amb només els elements de A a la diagonal
-D = diag(D);
-
-c = D\b;
-
-B = D\(D - A);
-
-rho = max(abs(eig(B)));
-
-for iter = 1:nmax
-    x = B*x+c;     
-    res = norm(b-A*x)/res0;    
-    %fprintf('%3d %24.15e %14.15e\n',iter,norm(x,Inf),res); % just for test
-    if (res < prec) 
-        return
-    end
-end
-iter = -nmax;
-fprintf('Possible error: no ha convergit en %d iteracions\n',nmax)
+[B, c] = getJacobi(A, b);
+[x, res, iter] = itermethod(A, b, B, c, x0, nmax, prec);
 
 end %end of FUNCTION jacobi
+
+function [B, c] = getJacobi(A, b)
+    D = diag(diag(A));
+    c = D\b;
+    B = D\(D - A);
+end

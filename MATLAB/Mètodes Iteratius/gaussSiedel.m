@@ -1,10 +1,9 @@
-function [x,rho,res,iter] = gaussS(A,b,x0,nmax,prec)
-% FUNCTION [x,rho,res,iter] = gaussS(A,b,x0,nmax,prec)
-% JACOBI. Resolution of a linear system Ax = b using Gauss-Seidel 
-%         iterative metod
-%                       x^(k+1)= B_GS x^(k) + c_GS
-%         with
-%                       B_GS = -INV(D+L)*U, c_GS = INV(D+L)*b
+function [x,res,iter] = gaussSiedel(A,b,x0,nmax,prec)
+% GAUSSSIEDEL Resolution of a linear system Ax = b using Gauss-Seidel 
+%            iterative metod
+%                          x^(k+1)= B_GS x^(k) + c_GS
+%            with
+%                          B_GS = -INV(D+L)*U, c_GS = INV(D+L)*b
 % INPUT
 %    A: real n x n matrix. Matrix of the linear system.
 %    b: real vector with n components. r.h.s. of the linear system. 
@@ -33,29 +32,19 @@ function [x,rho,res,iter] = gaussS(A,b,x0,nmax,prec)
 % 2019 Equip Docent ALN
 %
 
-tol=1.0e-12;
-D=diag(A);
-if min(abs(D))<tol %check for zeros on the diagonal
-    error('error: values on the diagonal with abs. val < %e',tol)
-end
-
-x = x0(:);
+checkDiag(A);
+x0 = x0(:);
 b = b(:);
-res0 = norm(b-A*x);
-L=tril(A);
-U=triu(A,1);
-c=L\b;
-B=-L\U;
-rho=max(abs(eig(B)));
-for iter=1:nmax
-    x = B*x+c;
-    res = norm(b-A*x)/res0;
-    %fprintf('%3d %24.15e %14.15e\n',iter,norm(x,Inf),res); % just for test
-    if (res < prec) 
-        return
-    end
-end
-iter = -nmax;
-fprintf('Warnig: no convergence in %d iterations\n',nmax)
+
+[B, c] = getGaussSiedel(A, b);
+[x, res, iter] = itermethod(A, b, B, c, x0, nmax, prec);
 
 end %end of FUNCTION gaussS
+
+
+function [B, c] = getGaussSiedel(A, b)
+    L=tril(A);
+    U=triu(A,1);
+    c=L\b;
+    B=-L\U;
+end
