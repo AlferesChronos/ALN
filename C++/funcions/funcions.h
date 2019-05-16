@@ -25,40 +25,40 @@ void Gauss (matriu& A, int row);
 int lu (matriu& A, vector <int>& perm);
 
 // Given a matriu A and b returns x such that Ax = b
-vec solve(matriu A, vec b);
+vec solve(const matriu& A, const vec& b);
 
 // Given a matriu A returns its inverse
-matriu inverse(matriu A);
+matriu inverse(const matriu& A);
 
-double determinant(matriu A);
+double determinant(const matriu& A);
 
-matriu multiply(matriu A, matriu B);
+matriu multiply(const matriu& A, const matriu& B);
 
 // it expresses a vector as a matriu (column vector)
-matriu transform(vec b);
+matriu transform(const vec& b);
 
-matriu add (matriu A, matriu B);
+matriu add (const matriu& A, const matriu& B);
 
-matriu subtract (matriu A, matriu B);
+matriu subtract (const matriu& A, const matriu& B);
 
-matriu transpose(matriu A);
+matriu transpose(const matriu& A);
 
-double norm_one(matriu A);
+double norm_one(const matriu& A);
 
-double norm_inf(matriu A);
+double norm_inf(const matriu& A);
 
-double norm_two(vec b);
+double norm_two(const vec& b);
 
-double condition_one(matriu A);
+double condition_one(const matriu& A);
 
-double condition_inf(matriu A);
+double condition_inf(const matriu& A);
 
-void print_matriu(matriu A);
+void print_matriu(const matriu& A);
 
-void print_matlab(matriu A);
+void print_matlab(const matriu& A);
 
 matriu identity(int n);
 
-double norm_one_vector (vec b);
+double norm_one_vector (const vec& b);
 
 #endif
