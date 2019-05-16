@@ -208,3 +208,43 @@ La funció `pivoting` rep una matriu A i un enter index indicant en quin pas de 
 
 ### funció `Gauss`
 La funció `Gauss` rep una matriu A i un enter row indicant quina es la fila sobre la que s'efectuarà Gauss (totes les files amb fila major que row canviaran de manera que A[>row][row] = 0)
+
+#### exemple
+
+Un altre exemple, la part de c++ de l'exercici 4:
+
+<table>
+<tr>
+<td>
+
+```
+cout << scientific << setprecision(11);
+ofstream output;
+
+output.open("normx.dat", ofstream::out);
+output << scientific << setprecision(11);
+
+vec eps (101, 0.01);
+for (int i = 0; i <= 100; ++i) eps[i] *= i;
+
+vector <vec> bk (101, b);
+for (int i = 0; i <= 100; ++i){
+    bk[i][0] += 0.1*i*cos(eps[i]);
+}
+
+for (int i = 0; i <= 100; ++i){
+    double f = norm_one_vector(solve(A, bk[i]));
+    output << eps[i] << " " << f << endl;
+
+    if (i == 100) cout << "f(e100) = " << f << endl;
+}
+
+output.close();
+```
+
+</td>
+<td>
+
+```
+f(e100) = 2.20874847044e+01
+```
